@@ -11,12 +11,15 @@ import com.tt.it_dictionary.databinding.FragmentMeaningBinding
 class TabFragmentMeaning : Fragment() {
 
     private lateinit var textView: TextView
+    private var binding: FragmentMeaningBinding? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         FragmentMeaningBinding.inflate(inflater, container, false).also {
+            binding = it
             textView = it.textView
             return it.root
         }
@@ -34,5 +37,10 @@ class TabFragmentMeaning : Fragment() {
         fun newInstance(vn: String) {
             this.vn = vn
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

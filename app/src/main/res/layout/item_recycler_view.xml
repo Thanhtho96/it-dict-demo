@@ -10,11 +10,11 @@
         android:id="@+id/wordName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="7dp"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:padding="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Zone"/>
+        tools:text="Zone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

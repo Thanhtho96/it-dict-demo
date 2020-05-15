@@ -21,12 +21,16 @@ class TabFragmentImage : Fragment() {
     private val scope = CoroutineScope(SupervisorJob())
     private lateinit var imageView: ImageView
     private lateinit var progressBar: ProgressBar
+    private var binding: FragmentImageBinding? = null
+    private var imageUrl: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         FragmentImageBinding.inflate(inflater, container, false).also {
+            binding = it
             imageView = it.image
             progressBar = it.progressBar
             return it.root
@@ -35,27 +39,50 @@ class TabFragmentImage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        scope.launch {
-            withContext(Dispatchers.IO) {
-                val url =
-                    "https://images.search.yahoo.com/yhs/search;?p=$en+programming&imgsz=large"
-                doc = Jsoup.connect(url)
-                    .userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
-                    .get()
+        if (savedInstanceState != null) {
+            with(savedInstanceState) {
+                imageUrl = getString("imageUrl")
             }
-            val images: Elements =
-                doc.select("img")
-            if (images.size > 0) {
-                withContext(Dispatchers.Main) {
-                    progressBar.visibility = View.GONE
-                    Glide.with(this@TabFragmentImage)
-                        .load(images[0].attr("data-src"))
-                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                        .placeholder(R.drawable.progress_bar)
-                        .into(imageView)
+        }
+        if (imageUrl == null) {
+            scope.launch {
+                withContext(Dispatchers.IO) {
+                    val url =
+                        "https://images.search.yahoo.com/yhs/search;?p=$en+programming&imgsz=large"
+                    doc = Jsoup.connect(url)
+                        .userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
+                        .get()
+                }
+                val images: Elements =
+                    doc.select("img")
+                if (images.size > 0) {
+                    withContext(Dispatchers.Main) {
+                        progressBar.visibility = View.GONE
+                        imageUrl = images[0].attr("data-src")
+
+                        Glide.with(this@TabFragmentImage)
+                            .load(imageUrl)
+                            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                            .placeholder(R.drawable.progress_bar)
+                            .into(imageView)
+                    }
                 }
             }
+        } else {
+            progressBar.visibility = View.GONE
+
+            Glide.with(this@TabFragmentImage)
+                .load(imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .placeholder(R.drawable.progress_bar)
+                .into(imageView)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.run {
+            putString("imageUrl", imageUrl)
         }
     }
 
@@ -65,5 +92,10 @@ class TabFragmentImage : Fragment() {
         fun newInstance(en: String) {
             this.en = en
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

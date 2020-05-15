@@ -34,9 +34,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/editext_bg"
             android:inputType="text"
-            android:textColor="@color/black"
             android:paddingHorizontal="7dp"
             android:paddingVertical="7dp"
+            android:textColor="@color/black"
             android:textSize="22sp"
             tools:text="Zone" />
     </LinearLayout>
