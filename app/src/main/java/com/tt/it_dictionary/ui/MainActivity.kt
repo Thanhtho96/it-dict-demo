@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var wordViewModel: WordViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var editText: EditText
+    private lateinit var imageButton: ImageButton
     private var listWord: MutableList<Word> = ArrayList()
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private val scope = CoroutineScope(SupervisorJob())
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             setContentView(it.root)
             recyclerView = it.recyclerView
             editText = it.editText
+            imageButton = it.clearButton
         }
         wordViewModel = ViewModelProvider(this).get(WordViewModel::class.java)
 
@@ -43,10 +46,23 @@ class MainActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
         recyclerView.adapter = recyclerViewAdapter
 
+        imageButton.setOnClickListener {
+            editText.text = null
+            recyclerView.visibility = View.GONE
+            it.visibility = View.GONE
+        }
+
         editText.addTextChangedListener(object : TextWatcher {
             private var timer: Timer = Timer()
             private val DELAY: Long = 277
             override fun afterTextChanged(s: Editable?) {
+                if (s != null) {
+                    if (s.trim().isNotEmpty()) {
+                        imageButton.visibility = View.VISIBLE
+                    } else {
+                        imageButton.visibility = View.GONE
+                    }
+                }
                 timer.cancel()
                 timer = Timer()
                 timer.schedule(

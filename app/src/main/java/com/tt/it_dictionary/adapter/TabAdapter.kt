@@ -14,15 +14,9 @@ class TabAdapter(fm: FragmentActivity, private val en: String, private val vn: S
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> TabFragmentMeaning().also {
-                TabFragmentMeaning.newInstance(vn)
-            }
-            1 -> TabFragmentImage().also {
-                TabFragmentImage.newInstance(en)
-            }
-            else -> TabFragmentMeaning().also {
-                TabFragmentMeaning.newInstance(vn)
-            }
+            0 -> TabFragmentMeaning.newInstance(vn)
+            1 -> TabFragmentImage.newInstance(en)
+            else -> TabFragmentMeaning.newInstance(vn)
         }
     }
 }

@@ -28,17 +28,35 @@
             android:textSize="27sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/editext_bg"
-            android:inputType="text"
-            android:paddingHorizontal="7dp"
-            android:paddingVertical="7dp"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            tools:text="Zone" />
+            android:background="@drawable/editext_bg">
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/editext_bg"
+                android:inputType="text"
+                android:paddingVertical="7dp"
+                android:paddingStart="7dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                tools:ignore="RtlSymmetry"
+                tools:text="Zone" />
+
+            <ImageButton
+                android:id="@+id/clearButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="7dp"
+                android:background="@drawable/transparent_radius_ripple"
+                android:src="@drawable/ic_close"
+                android:visibility="gone" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

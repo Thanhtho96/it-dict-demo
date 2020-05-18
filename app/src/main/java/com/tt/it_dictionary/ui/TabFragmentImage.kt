@@ -23,6 +23,12 @@ class TabFragmentImage : Fragment() {
     private lateinit var progressBar: ProgressBar
     private var binding: FragmentImageBinding? = null
     private var imageUrl: String? = null
+    private var en: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        en = arguments?.getString("en")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,10 +93,13 @@ class TabFragmentImage : Fragment() {
     }
 
     companion object {
-        private lateinit var en: String
-
-        fun newInstance(en: String) {
-            this.en = en
+        @JvmStatic
+        fun newInstance(en: String): TabFragmentImage {
+            val tabFragmentImage = TabFragmentImage()
+            val args = Bundle()
+            args.putString("en", en)
+            tabFragmentImage.arguments = args
+            return tabFragmentImage
         }
     }
 

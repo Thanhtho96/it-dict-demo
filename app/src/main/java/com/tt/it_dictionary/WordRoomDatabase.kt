@@ -5,7 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.tt.it_dictionary.dao.FavoriteWordDao
 import com.tt.it_dictionary.dao.WordDao
+import com.tt.it_dictionary.model.FavoriteWord
 import com.tt.it_dictionary.model.Word
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -14,9 +16,10 @@ import java.io.IOException
 import java.io.InputStreamReader
 import java.util.*
 
-@Database(entities = [Word::class], version = 1, exportSchema = false)
+@Database(entities = [Word::class, FavoriteWord::class], version = 1, exportSchema = false)
 abstract class WordRoomDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
+    abstract fun favoriteWordDao(): FavoriteWordDao
 
     private class WordDatabaseCallback(
         private val context: Context,

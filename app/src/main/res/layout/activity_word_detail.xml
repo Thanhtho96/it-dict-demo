@@ -24,12 +24,22 @@
 
         <TextView
             android:id="@+id/english"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
             android:textColor="@color/white"
             android:textSize="27sp"
             tools:text="test" />
+
+        <CheckBox
+            android:id="@+id/checkboxFavoriteWord"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="7dp"
+            android:background="@drawable/checkbox_star"
+            android:button="@null" />
     </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout

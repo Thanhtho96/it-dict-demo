@@ -32,6 +32,7 @@ class RecyclerViewAdapter(private var context: Context, private var listWord: Mu
             Intent(context, WordDetail::class.java).also {
                 it.putExtra("en", word.en)
                 it.putExtra("vn", word.vn)
+                it.putExtra("wordId", word.id)
                 context.startActivity(it)
             }
         }

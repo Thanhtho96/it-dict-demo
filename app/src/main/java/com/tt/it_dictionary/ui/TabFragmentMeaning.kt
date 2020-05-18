@@ -12,6 +12,12 @@ class TabFragmentMeaning : Fragment() {
 
     private lateinit var textView: TextView
     private var binding: FragmentMeaningBinding? = null
+    private var vn: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        vn = arguments?.getString("vn")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,10 +38,13 @@ class TabFragmentMeaning : Fragment() {
     }
 
     companion object {
-        private lateinit var vn: String
-
-        fun newInstance(vn: String) {
-            this.vn = vn
+        @JvmStatic
+        fun newInstance(vn: String): TabFragmentMeaning {
+            val tabFragmentImage = TabFragmentMeaning()
+            val args = Bundle()
+            args.putString("vn", vn)
+            tabFragmentImage.arguments = args
+            return tabFragmentImage
         }
     }
 
