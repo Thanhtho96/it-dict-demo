@@ -4,19 +4,24 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tt.it_dictionary.databinding.ItemRecyclerViewBinding
 import com.tt.it_dictionary.model.Word
 import com.tt.it_dictionary.ui.WordDetail
 
-class RecyclerViewAdapter(private var context: Context, private var listWord: MutableList<Word>) :
+class RecyclerViewAdapter(
+    private var context: Context,
+    private var listWord: MutableList<Word>,
+    private var textColor: Int
+) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         ItemRecyclerViewBinding.inflate(layoutInflater, parent, false).also {
-            return ViewHolder(it)
+            return ViewHolder(it, textColor)
         }
     }
 
@@ -38,7 +43,11 @@ class RecyclerViewAdapter(private var context: Context, private var listWord: Mu
         }
     }
 
-    class ViewHolder(binding: ItemRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root) {
-        val wordName = binding.wordName
+    class ViewHolder(binding: ItemRecyclerViewBinding, textColor: Int) : RecyclerView.ViewHolder(binding.root) {
+        var wordName: TextView = binding.wordName
+
+        init {
+            wordName.setTextColor(textColor)
+        }
     }
 }

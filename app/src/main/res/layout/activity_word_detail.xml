@@ -19,6 +19,7 @@
             android:layout_gravity="center_vertical"
             android:layout_margin="7dp"
             android:background="@drawable/transparent_radius_ripple"
+            android:padding="7dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_arrow_back_white" />
 
@@ -31,6 +32,16 @@
             android:textColor="@color/white"
             android:textSize="27sp"
             tools:text="test" />
+
+        <ImageButton
+            android:id="@+id/tts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="5dp"
+            android:background="@drawable/transparent_radius_ripple"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_record_voice_over_black_24dp" />
 
         <CheckBox
             android:id="@+id/checkboxFavoriteWord"

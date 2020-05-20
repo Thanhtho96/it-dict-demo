@@ -14,4 +14,8 @@ class WordRepository(private val wordDao: WordDao) {
     fun getFavoriteWord(id: Int): LiveData<WordAndFavoriteWord> {
         return wordDao.getFavoriteWord(id)
     }
+
+    fun getAllFavoriteWord(): LiveData<List<Word>> {
+        return wordDao.getAllFavoriteWord()
+    }
 }

@@ -47,4 +47,8 @@ class WordViewModel(application: Application) : AndroidViewModel(application) {
     fun deleteFavoriteWord(favoriteWord: FavoriteWord) = viewModelScope.launch(Dispatchers.IO) {
         favoriteWordRepository.deleteFavoriteWord(favoriteWord)
     }
+
+    fun getAllFavoriteWord(){
+        wordFoundResult = wordRepository.getAllFavoriteWord()
+    }
 }
