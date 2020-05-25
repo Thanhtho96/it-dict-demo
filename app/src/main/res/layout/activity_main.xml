@@ -43,13 +43,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/editext_bg"
+                    android:hint="Search"
                     android:inputType="text"
                     android:paddingVertical="7dp"
                     android:paddingStart="7dp"
                     android:textColor="@color/black"
                     android:textSize="22sp"
-                    tools:ignore="RtlSymmetry"
-                    tools:text="Zone" />
+                    tools:ignore="RtlSymmetry" />
 
                 <ImageButton
                     android:id="@+id/clearButton"

@@ -43,7 +43,8 @@ class RecyclerViewAdapter(
         }
     }
 
-    class ViewHolder(binding: ItemRecyclerViewBinding, textColor: Int) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(binding: ItemRecyclerViewBinding, textColor: Int) :
+        RecyclerView.ViewHolder(binding.root) {
         var wordName: TextView = binding.wordName
 
         init {

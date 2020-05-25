@@ -7,4 +7,6 @@
     <color name="yellow">#fde401</color>
     <color name="black">#000000</color>
     <color name="purple">#F83F7E</color>
+    <color name="silver">#4C000000</color>
+    <color name="blur_silver">#2D000000</color>
 </resources>

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">IT-Dictionary</string>
+
+    <plurals name="plural_time">
+        <item quantity="one">%d time</item>
+        <item quantity="other">%d times</item>
+    </plurals>
+
 </resources>

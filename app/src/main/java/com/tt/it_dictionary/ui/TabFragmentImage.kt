@@ -9,7 +9,6 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.tt.it_dictionary.R
 import com.tt.it_dictionary.databinding.FragmentImageBinding
 import kotlinx.coroutines.*
 import org.jsoup.Jsoup
@@ -69,7 +68,6 @@ class TabFragmentImage : Fragment() {
                         Glide.with(this@TabFragmentImage)
                             .load(imageUrl)
                             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                            .placeholder(R.drawable.progress_bar)
                             .into(imageView)
                     }
                 }
@@ -80,7 +78,6 @@ class TabFragmentImage : Fragment() {
             Glide.with(this@TabFragmentImage)
                 .load(imageUrl)
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .placeholder(R.drawable.progress_bar)
                 .into(imageView)
         }
     }
@@ -94,12 +91,10 @@ class TabFragmentImage : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(en: String): TabFragmentImage {
-            val tabFragmentImage = TabFragmentImage()
-            val args = Bundle()
-            args.putString("en", en)
-            tabFragmentImage.arguments = args
-            return tabFragmentImage
+        fun newInstance(en: String) = TabFragmentImage().apply {
+            arguments = Bundle().apply {
+                putString("en", en)
+            }
         }
     }
 

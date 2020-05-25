@@ -39,12 +39,10 @@ class TabFragmentMeaning : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(vn: String): TabFragmentMeaning {
-            val tabFragmentImage = TabFragmentMeaning()
-            val args = Bundle()
-            args.putString("vn", vn)
-            tabFragmentImage.arguments = args
-            return tabFragmentImage
+        fun newInstance(vn: String) = TabFragmentMeaning().apply {
+            arguments = Bundle().apply {
+                putString("vn", vn)
+            }
         }
     }
 
